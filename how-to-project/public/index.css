@@ -1,0 +1,209 @@
+body {
+  background-color: black;
+}
+
+@media only screen and (min-width: 600px){
+  body{
+    /* background-image: url("Images/bg.png"); */
+  }
+}
+
+/* ******************* TITLE *****************  */
+
+.home-section-1 h1{
+  font-size: 80px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.home-section-1{
+  margin: 120px;
+}
+
+.home-section-1 img{
+    /* margin: 0; */
+    padding: 0;
+    position: absolute;
+}
+
+.home-section-1 .main-img{
+  position: absolute;
+  margin-right: 10px;
+}
+
+.home-section-1 .obj{
+  z-index: 1;
+}
+
+.home-section-1 .obj3{
+  margin-top: 420px;
+  margin-left: 100px;
+}
+
+.home-section-1 .obj2{
+  margin-left: 400px;
+  margin-top: -100px;
+}
+
+.home-section-1 .obj1{
+  margin-left: -50px;
+}
+
+
+/* ******************* Features **************** */
+
+#features{
+	padding: 2rem;
+}
+
+.feature-box{
+  padding: absolute;
+	padding: 10%;
+	text-align: center;
+  padding-bottom: 7%;
+}
+
+.features-icons{
+
+	color: plum;
+	padding: 0 2rem 2rem;
+}
+
+.features-icons:hover{
+	color: #ff00fb;
+}
+
+h3{
+	font-size: 2.7rem;
+	font-family: Montserrat-Medium;
+  color: white;
+}
+
+p{
+	font-family: Ubuntu;
+	color: white;
+  font-size: 1.2rem;
+}
+
+.features img{
+  margin-top: 100px;
+  margin-left: -300px;
+}
+
+/* **************** TEAM MEMBERS ****************** */
+
+.teamSection{
+  margin: 0 120px;
+}
+
+
+.member{
+  border-radius: 50%;
+  justify-content: center;
+  height: 300px;
+  display: inline;
+  margin: 70px;
+  padding: 0;
+  float: left;
+}
+
+.member:hover{
+  border: 7px solid #fca8fb;
+}
+
+.team{
+  font-size: 4rem;
+  color: white;
+  padding: 0 50px;
+}
+
+/* ********************* MY FEED ****************** */
+
+.search-bar{
+  position: absolute;
+  display: inline-block;
+  width: 450px;
+  height: 40px;
+  border-radius: 25px;
+  background-color: #c69af6;
+  right: 200px;
+  top: 40px;
+}
+
+.search-bar:hover{
+  box-shadow: 5px 5px 40px #c89ef5;
+}
+
+.search-icon{
+  position: absolute;
+  margin-top: 11px;
+  margin-left: 20px;
+}
+
+.search-icon:hover{
+  box-shadow: 10px 5px 40px #c89ef5;
+}
+
+.profile-icon{
+  position: absolute;
+  display: inline-block;
+  right: 100px;
+  top: 35px;
+  color: rgb(198, 154, 246);
+}
+
+.feed{
+  width: 80%;
+  margin-top: 200px;
+  margin-left: 300px;
+  margin-bottom: 100px;
+}
+
+.Trending{
+  margin-top: 30px;
+}
+
+.feed h2{
+  color: aliceblue;
+  margin: 20px;
+  display: inline-block;
+}
+
+.feed h5{
+  display: inline;
+  color: aliceblue;
+  margin: 20px;
+  margin-left: 650px;
+  
+}
+
+.slick-slide > div{
+    margin: 0 20px;
+    border-radius: 50%;
+    
+}
+
+.slick-list{
+  margin: 0 -10px;
+}
+
+.BlogCard{
+  margin: 20px;
+  display: inline-block;
+}
+
+.img1{
+  position: fixed;
+  z-index: -1;
+  top: -10px;
+  left: -10px;
+  /* transform: rotate(85deg); */
+}
+
+.img2{
+  position: fixed;
+  z-index: -1; 
+  bottom: 0;
+  right: -5px;
+  /* transform: rotate(85deg); */
+}
