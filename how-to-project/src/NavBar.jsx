@@ -96,7 +96,7 @@ function NavBar() {
           </ListItem>
 
           <ListItem key="Contribute" disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => setOpenPopUp(true)}>
               <Dialog className="Pop-Up" open={openPopUp}>
                 <DialogTitle>This is Title</DialogTitle>
 
@@ -107,7 +107,7 @@ function NavBar() {
           </ListItem>
 
           <ListItem key="Feedback" disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => setOpenPopUp(true)}>
               <Dialog className="Pop-Up" open={openPopUp}>
                 <DialogTitle>This is Title</DialogTitle>
 
