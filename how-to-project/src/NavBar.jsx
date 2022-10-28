@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
@@ -13,8 +13,9 @@ import { Typography } from "@mui/material";
 // import InboxIcon from "@mui/icons-material/MoveToInbox";
 // import MailIcon from "@mui/icons-material/Mail";
 import { Box, ThemeProvider, createTheme } from "@mui/system";
-import CBlogo from "./Images/CB-LOGO.png";
-import Celestial from "./Images/CB.png";
+import Button from "@mui/material/Button";
+import PopUp from "./PopUp.jsx";
+import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -27,6 +28,8 @@ const drawerWidth = 240;
 // });
 
 function NavBar() {
+  const [openPopUp, setOpenPopUp] = useState(false);
+
   return (
     <>
       {/* <CssBaseline /> */}
@@ -67,31 +70,52 @@ function NavBar() {
 
         <Divider />
         <List>
-          {["Home", "My Feed", "Trending", "My Activity"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                {/* <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon> */}
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["Bookmarks", "Customize", "Contribute", "Feedback"].map(
+          {["Home", "My Feed", "Trending", "My Activity", "Bookmarks"].map(
             (text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton>
-                  {/* <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon> */}
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
             )
           )}
+        </List>
+        <Divider />
+        <List>
+          <ListItem key="Customize" disablePadding>
+            <ListItemButton onClick={() => setOpenPopUp(true)}>
+              <Dialog className="Pop-Up" open={openPopUp}>
+                <DialogTitle>This is Title</DialogTitle>
+
+                <DialogContent>Here's the content</DialogContent>
+              </Dialog>
+
+              {/* <PopUp openPopUp={openPopUp} set={setOpenPopUp} /> */}
+              <ListItemText primary="Customize" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem key="Contribute" disablePadding>
+            <ListItemButton>
+              <Dialog className="Pop-Up" open={openPopUp}>
+                <DialogTitle>This is Title</DialogTitle>
+
+                <DialogContent>Here's the content</DialogContent>
+              </Dialog>
+              <ListItemText primary="Contribute" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem key="Feedback" disablePadding>
+            <ListItemButton>
+              <Dialog className="Pop-Up" open={openPopUp}>
+                <DialogTitle>This is Title</DialogTitle>
+
+                <DialogContent>Here's the content</DialogContent>
+              </Dialog>
+              <ListItemText primary="Feedback" />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
     </>
