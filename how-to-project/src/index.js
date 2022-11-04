@@ -12,10 +12,10 @@ function Main() {
         {/* <Header/>  */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Feeds />} />
-          <Route path="/communities" element={"2"} />
-          <Route path="/events" element={"3"} />
-          <Route path="/profile" element={"4"} />
+          <Route path="/feed" element={<Feeds />} />
+          <Route path="/Trending" element={<Feeds />} />
+          <Route path="/My-Activity" element={"3"} />
+          <Route path="/Bookmarks" element={"4"} />
         </Routes>
       </BrowserRouter>
     </div>
