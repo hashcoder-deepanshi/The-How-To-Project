@@ -1,23 +1,40 @@
-import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import React from "react";
-
-const style = {
-  height: "30%",
-  width: "40%",
-  justifyContent: "center",
-  background: "none",
-  bgColor: "transparent",
-};
+import { Typography } from "@mui/material";
+import { Button } from "@mui/material";
 
 function PopUp(props) {
-  return (
-    <>
-      <Dialog sx={style} className="Pop-Up" open={props.openPopUp}>
-        <DialogTitle>This is Title</DialogTitle>
+  return props.trigger ? (
+    <div className="popup">
+      <div className="popup-inner">
+        <button className="close-btn" onClick={() => props.setTrigger(false)}>
+          <i class="fas fa-times-circle"></i>
+        </button>
+        <Typography
+          variant="h5"
+          marginRight="50px"
+          display="block"
+          color="black"
+          marginBottom="30px"
+        >
+          {props.title}
+        </Typography>
+        <Typography marginBottom="30px" color="black">
+          {props.content}
+        </Typography>
+        {props.children}
 
-        <DialogContent>Here's the content</DialogContent>
-      </Dialog>
-    </>
+        <Button
+          variant="contained"
+          color="secondary"
+          sx={{ marginTop: "20px" }}
+          onClick={() => props.setTrigger(false)}
+        >
+          {props.submitText}
+        </Button>
+      </div>
+    </div>
+  ) : (
+    ""
   );
 }
 

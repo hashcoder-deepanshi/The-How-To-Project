@@ -2,37 +2,56 @@ import React, { useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-// import Typography from '@mui/material/Typography';
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-// import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Typography } from "@mui/material";
-// import InboxIcon from "@mui/icons-material/MoveToInbox";
-// import MailIcon from "@mui/icons-material/Mail";
-import { Box, ThemeProvider, createTheme } from "@mui/system";
+import { Box, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import PopUp from "./PopUp.jsx";
-import { Dialog, DialogContent, DialogTitle } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
-// const theme = createTheme({
-//   palette: {
-//     background: {
-//       paper: "#000",
-//     },
-//   },
-// });
-
 function NavBar() {
-  const [openPopUp, setOpenPopUp] = useState(false);
+  const [feedback, setFeedback] = useState(false);
+  const [contri, setContri] = useState(false);
+  const [cust, setCust] = useState(false);
+
+  const [components, setComponents] = useState([""]);
+
+  function Add(event) {
+    setComponents([
+      ...components,
+      <>
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            id="outlined-password-input"
+            label="Name"
+            type="Name"
+            autoComplete="current-password"
+          />
+          <TextField
+            id="outlined-password-input"
+            label="Email ID"
+            type="Email ID"
+            autoComplete="current-password"
+          />
+        </Box>
+      </>,
+    ]);
+  }
 
   return (
     <>
-      {/* <CssBaseline /> */}
       <Drawer
         PaperProps={{
           sx: {
@@ -70,52 +89,147 @@ function NavBar() {
 
         <Divider />
         <List>
-          {["Home", "My Feed", "Trending", "My Activity", "Bookmarks"].map(
-            (text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            )
-          )}
+          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <ListItem key="Home" disablePadding>
+              <ListItemButton>
+                <ListItemText primary="Home" />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+
+          <Link to="/feed" style={{ textDecoration: "none", color: "white" }}>
+            <ListItem key="My Feed" disablePadding>
+              <ListItemButton>
+                <ListItemText primary="My Feed" />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+
+          <Link
+            to="/Trending"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <ListItem key="Trending" disablePadding>
+              <ListItemButton>
+                <ListItemText primary="Trending" />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+
+          <Link
+            to="/My-Activity"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <ListItem key="My Activity" disablePadding>
+              <ListItemButton>
+                <ListItemText primary="My Activity" />
+              </ListItemButton>
+            </ListItem>
+          </Link>
         </List>
+
         <Divider />
+
         <List>
-          <ListItem key="Customize" disablePadding>
-            <ListItemButton onClick={() => setOpenPopUp(true)}>
-              <Dialog className="Pop-Up" open={openPopUp}>
-                <DialogTitle>This is Title</DialogTitle>
-
-                <DialogContent>Here's the content</DialogContent>
-              </Dialog>
-
-              {/* <PopUp openPopUp={openPopUp} set={setOpenPopUp} /> */}
-              <ListItemText primary="Customize" />
-            </ListItemButton>
-          </ListItem>
-
           <ListItem key="Contribute" disablePadding>
-            <ListItemButton onClick={() => setOpenPopUp(true)}>
-              <Dialog className="Pop-Up" open={openPopUp}>
-                <DialogTitle>This is Title</DialogTitle>
-
-                <DialogContent>Here's the content</DialogContent>
-              </Dialog>
+            <ListItemButton onClick={() => setContri(true)}>
               <ListItemText primary="Contribute" />
             </ListItemButton>
           </ListItem>
+          <PopUp
+            trigger={contri}
+            setTrigger={setContri}
+            title="CONTRIBUTE"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam in sapien elementum ipsum molestie dictum sit amet eu
+                    lorem."
+            submitText="Submit"
+          >
+            <Box
+              component="form"
+              sx={{
+                "& .MuiTextField-root": { m: 1, width: "50ch" },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField fullWidth label="Topic" id="Topic" margin="20px" />
+              <TextField fullWidth label="URL" id="URL" margin="20px" />
+            </Box>
+          </PopUp>
+
+          <ListItem key="Invite" disablePadding>
+            <ListItemButton onClick={() => setCust(true)}>
+              <ListItemText primary="Invite" />
+            </ListItemButton>
+          </ListItem>
+          <PopUp
+            trigger={cust}
+            setTrigger={setCust}
+            title="INVITE"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam in sapien elementum ipsum molestie dictum sit amet eu
+                    lorem."
+            submitText="Invite"
+          >
+            <Box
+              component="form"
+              sx={{
+                "& .MuiTextField-root": { m: 1, width: "25ch" },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                id="outlined-password-input"
+                label="Name"
+                type="Name"
+                autoComplete="current-password"
+              />
+              <TextField
+                id="outlined-password-input"
+                label="Email ID"
+                type="Email ID"
+                autoComplete="current-password"
+              />
+            </Box>
+            <Button
+              variant="text"
+              sx={{
+                display: "block",
+                marginLeft: "49px",
+                marginBottom: "2px",
+              }}
+              color="secondary"
+              onClick={Add}
+            >
+              Add More
+            </Button>
+          </PopUp>
 
           <ListItem key="Feedback" disablePadding>
-            <ListItemButton onClick={() => setOpenPopUp(true)}>
-              <Dialog className="Pop-Up" open={openPopUp}>
-                <DialogTitle>This is Title</DialogTitle>
-
-                <DialogContent>Here's the content</DialogContent>
-              </Dialog>
+            <ListItemButton onClick={() => setFeedback(true)}>
               <ListItemText primary="Feedback" />
             </ListItemButton>
           </ListItem>
+          <PopUp
+            trigger={feedback}
+            setTrigger={setFeedback}
+            title="FEEDBACK"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in
+              sapien elementum ipsum molestie dictum sit amet eu lorem."
+            submitText="Submit"
+          >
+            <TextField
+              fullWidth
+              id="outlined-multiline-static"
+              label="Feedback"
+              multiline
+              rows={4}
+              defaultValue=""
+              color="secondary"
+            />
+          </PopUp>
         </List>
       </Drawer>
     </>
