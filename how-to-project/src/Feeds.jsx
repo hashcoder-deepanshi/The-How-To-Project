@@ -1,17 +1,38 @@
 import React, { useState } from "react";
 import BlogCard from "./BlogCards";
-import Blogs from "./Blogs";
 import NavBar from "./NavBar";
 import Img1 from "./Images/6.png";
 import Img2 from "./Images/7.png";
 import PopUp from "./PopUp";
 import Fab from "@mui/material/Fab";
 import Login from "./Images/Login.png";
-import { Box, TextField } from "@mui/material";
+import {GoogleButton } from 'react-google-button'
+import { UserAuth } from '../src/Firebase/AuthContext';
+import useAuthState from "./Firebase/hooks";
+import { auth } from "./Firebase/firebase";
 
 function Feeds() {
+  const {User,logOut} = UserAuth()
+  const {user,initializing} = useAuthState(auth);
   const [openLogin, setOpenLogin] = useState(false);
-
+  const {googleSignIn} = UserAuth();
+  const handleGoogleSignIn = async () =>{
+        try{
+         await googleSignIn()
+        }catch(error){
+            console.log(error);
+        }
+      }
+      if(initializing){
+        return("loading...");
+      }
+  const handleSignOut = async()=>{
+    try{
+      await logOut()
+    }catch(error){
+      console.log(error)
+    }
+  }
   return (
     <>
       <img class="img1" src={Img1} alt="" />
@@ -51,45 +72,37 @@ function Feeds() {
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Etiam in sapien elementum ipsum molestie dictum sit amet eu
                     lorem."
-        submitText="Login"
+        
       >
         <img class="loginImg" src={Login} alt="" />
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "50ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            fullWidth
-            id="UserName"
-            label="Username"
-            type="Username"
-            autoComplete="current-password"
-          />
-          <TextField
-            fullWidth
-            id="password"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-          />
-        </Box>
+        <div >
+          {user
+          ?       <div>
+            <p>{user.displayName}</p>  
+                <button onClick={handleSignOut}>LOGOUT</button>
+
+          </div>
+          :        <GoogleButton onClick={handleGoogleSignIn}/>
+
+        }
+      </div>
+
       </PopUp>
 
       <NavBar />
       <div class="feed myfeed">
-        {Blogs.map((blog) => (
+     {/*} {Blogs.map((blog) => (
+
           <BlogCard
-            key={blog.id}
-            img={blog.imgURL}
-            heading={blog.heading}
-            desc={blog.desc}
-          />
-        ))}
+          key={blog.id}
+          img={blog.imgURL}
+          heading={blog.heading}
+          desc={blog.desc}/>
+     ))}*/}
+     <BlogCard/>
+
       </div>
+      
     </>
   );
 }

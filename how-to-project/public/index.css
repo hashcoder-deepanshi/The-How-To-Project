@@ -394,3 +394,21 @@ p{
   font-size: larger;
   text-decoration: none;
 }
+/*************************LOGIN & SIGNUP PAGE*********************/
+.img5{
+  position:absolute;
+  top:0;
+  right:0;
+
+}
+.img6{
+  position:fixed;
+  top:0;
+  left:5px
+  }
+
+  .form-container{
+    width:450px;
+    margin:100px 470px;
+    color: #aa5bff;
+  }

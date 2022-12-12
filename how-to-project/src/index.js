@@ -3,6 +3,12 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./home";
 import Feeds from "./Feeds";
+import MyActivity from './MyActivity';
+import BlogPost from './BlogPost';
+import SearchPage from './SearchPage';
+import LoginPage from './LoginPage';
+import { AuthContextProvider } from "../src/Firebase/AuthContext";
+
 // import "../public/index.css";
 
 function Main() {
@@ -10,6 +16,7 @@ function Main() {
     <div>
       <BrowserRouter>
         {/* <Header/>  */}
+        <AuthContextProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/feed" element={<Feeds />} />
@@ -17,8 +24,9 @@ function Main() {
           <Route path="/My-Activity" element={<MyActivity/>} />
           <Route path="/BlogPost" element={<BlogPost />} />
           <Route path="/SearchPage" element={<SearchPage/>} />
-          <Route path="/Bookmarks" element={"4"} />
+          <Route path="/LoginPage" element={<LoginPage/>} />
         </Routes>
+        </AuthContextProvider>
       </BrowserRouter>
     </div>
   );
